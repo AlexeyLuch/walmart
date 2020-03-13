@@ -36,6 +36,15 @@ def parse_all_info_on_wallmart(product_id):
         category = "without category"
         pass
 
-    save_product = Product(id_product=product_id,title=title,in_stock=in_stock,price=price,url=url,description=description,
-                category=category,rating_reviews=rating_views,brand=brand,amount=amount,delivery_price=delivery)
+    save_product = Product(id_product=product_id,
+                           title=title,
+                           in_stock=in_stock,
+                           price=price,
+                           url=url,
+                           description=description,
+                           category=category,
+                           rating_reviews=rating_views,
+                           brand=brand,
+                           amount=amount,
+                           delivery_price=delivery)
     save_product.save()
