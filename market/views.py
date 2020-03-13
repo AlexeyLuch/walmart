@@ -1,16 +1,9 @@
-from django.views import View
-
 from .models import Product
-from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from .forms import UploadFileForm,HowMatchProducts
 
-import sqlite3
-import requests
-from lxml import html
 
-
-from . parser import parse_all_info
+from . parser import parse_all_info_on_wallmart
 from .selen import pick_products
 
 def products(request):
@@ -21,15 +14,15 @@ def products(request):
         pick_products(int(sum_product),id_product)
     if "file" in request.FILES:
         UploadFileForm(request.POST, request.FILES)
-        handle_uploaded_file(request.FILES['file'])
+        file_with_id_products(request.FILES['file'])
 
     return render(request, 'market/site_page.html', {'products': Product.objects.all()})
 
 
-def handle_uploaded_file(f):
-        for chunk in f:
-            product_id = (chunk.rstrip()).decode("utf-8")
-            parse_all_info(product_id)
+def file_with_id_products(file_with_id):
+        for id in file_with_id:
+            product_id = (id.rstrip()).decode("utf-8")
+            parse_all_info_on_wallmart(product_id)
 
 
 

@@ -48,7 +48,7 @@
           <td>{{ product.category }}</td>
           <td>{{ product.rating_reviews }}</td>
           <td>{{ product.brand }}</td>
-          <td>{{ product.amount }}</td>
+          <td>{{ product.in_stock }}</td>
           <td>{{ product.delivery_price }}</td>
          <td>  <form action="{% url 'products'%}" method="post" >
              {% csrf_token %}
