@@ -3,7 +3,10 @@ from .models import Product,Task
 from django.utils.safestring import mark_safe
 
 
-admin.site.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Task,TaskAdmin)
 
 admin.site.site_header = "My admin panel"
 

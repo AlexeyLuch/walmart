@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
   <title>Bootstrap Example</title>
@@ -13,25 +14,27 @@
 <body>
 
 <div class="container">
+
   <form enctype="multipart/form-data" method="post" >{% csrf_token %}
+      <h3> Download file with id</h3>
    <p><input type="file" name="file">
    <input type="submit" value="Отправить"></p>
   </form>
- {{ form }}
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-          <th>Email</th>
-          <th>Email</th>
-          <th>Email</th>
-          <th>Email</th>
-          <th>Email</th>
-           <th>Email</th>
-          <th>Email</th>
-          <th>Email</th>
+        <th>id product</th>
+        <th>title</th>
+        <th>price</th>
+          <th>url</th>
+          <th>description</th>
+          <th>category</th>
+          <th>rating reviews</th>
+           <th>brand</th>
+          <th>amount</th>
+          <th>delivery price</th>
+          <th>How match</th>
+
       </tr>
     </thead>
     <tbody>
@@ -44,10 +47,16 @@
           <td>{{ product.description }}</td>
           <td>{{ product.category }}</td>
           <td>{{ product.rating_reviews }}</td>
-          <td>{{ product.in_stock }}</td>
           <td>{{ product.brand }}</td>
           <td>{{ product.amount }}</td>
           <td>{{ product.delivery_price }}</td>
+         <td>  <form action="{% url 'products'%}" method="post" >
+             {% csrf_token %}
+   <p><input type="text" name="text"required placeholder="How match products">
+       <input type="hidden" name="text1" value="{{ product.id_product }}">
+   <input type="submit" value="Add to Cart"></p>
+  </form></td>
+
           {%endfor%}
       </tr>
     </tbody>

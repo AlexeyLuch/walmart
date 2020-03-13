@@ -19,6 +19,16 @@ class Product(models.Model):
 
 class Task(models.Model):
     file = models.FileField(verbose_name="id_products")
-    print(file)
     def __str__(self):
         return self.file.name
+
+class ProductChoiseToCart(models.Model):
+    how_match_products = models.IntegerField()
+    id_product = models.CharField(max_length=30, db_index=True)
+
+class contact(models.Model):
+  name = models.CharField(verbose_name = "Имя", max_length=60, blank=True, default=None)
+  email = models.EmailField()
+  text = models.TextField(blank=True, default=None)
+
+
